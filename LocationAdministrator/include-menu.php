@@ -8,6 +8,6 @@
     	<ul>
     	<li><a href="Location-Main.php">click...</a></li>
     </ul>
-    </li>						
+    </li><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>						
         <li class="cd-label">Copyright © 2017 CMU-MAP by CO-OP RMUTL. All rights reserved.</li>
 </ul>
