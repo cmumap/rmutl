@@ -47,7 +47,7 @@ if (isset($_POST['login'])) {
 <html>
 <head>
 <meta charset="utf-8">
-<title>GIS-TAXMAP </title>
+<title>CMU-MAP </title>
 
 <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 <link rel="stylesheet" href="css/index.css">
@@ -59,7 +59,7 @@ if (isset($_POST['login'])) {
 	<div class="site__container">
     <div class="grid__container">
     	<p class="text--style">
-        <font color="#FFFFFF" size="+2"><b>GIS TAX MAP</b></font> <b><font color="#999999" size="+2">Web Officer</font></b>
+        <font color="#FFFFFF" size="+2"><b>CMU-MAP</b></font> <b><font color="#999999" size="+2">Web Officer</font></b>
         <br>
         <br>
         </p>
@@ -80,7 +80,7 @@ if (isset($_POST['login'])) {
       	</form>
       	<p class="text--style">
         <br>
-        <font color="#FFFFFF">Copyright © 2018  by Guitar Story. All rights reserved.</font>
+        <font color="#FFFFFF">Copyright © 2018  by CO-OP RMUTL All rights reserved.</font>
         </p>
     </div>
 	</div>

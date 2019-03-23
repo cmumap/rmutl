@@ -38,7 +38,7 @@
 
     </header>
     <div id="map">
-        <?php include 'locations_model.php' ?>
+        <?php include 'locations_model.php'; ?>
     </div>
     
 

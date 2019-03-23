@@ -41,7 +41,7 @@
 
 		
 		// Delete record in DB
-		$stmt_delete = $DB_con->prepare('DELETE FROM maplocate WHERE locate_id =:uid');
+		$stmt_delete = $DB_con->prepare('DELETE FROM locations WHERE id =:uid');
 		$stmt_delete->bindParam(':uid',$_GET['delete_id']);
 		$stmt_delete->execute();
 		
@@ -97,7 +97,7 @@
  	 }
 	</script>
   	
-<title>EXO CNX Travel Map by Yuii Napat</title>
+<title>CMU-MAP</title>
 </head>
 <body>
 
@@ -115,7 +115,7 @@
         <!-- Header  -->
         <div id="panel-fullarea">
         <div class="panelfooter">
-        <div class="panel-title"><font size="+2">Travel Map Location</font></div> 
+        <div class="panel-title"><font size="+2">CMU-MAP Location</font></div> 
         </div>
         </div>   
         
@@ -133,13 +133,11 @@
                             <thead>
                                 <tr>
                                 <th style="text-align:centert">no.</th>
-                                <th style="text-align:centert">trip</th>
-                                <th style="text-align: center">title</th>
-                                <th style="text-align: center">latitude</th>
-                                <th style="text-align: center">longitude</th>
+                                <th style="text-align:centert">lat</th>
+                                <th style="text-align: center">lng</th>
+                                <th style="text-align: center">des</th>
+                                <th style="text-align: center">type</th>
                                 <th style="text-align: center">URL</th>
-                                <th></th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                                 </tr>
@@ -147,7 +145,7 @@
                             <tbody>
                              <?php							 
 								$n=1;
-								$stmt = $DB_con->prepare('SELECT locate_id, locate_province, locate_title, locate_des, locate_Latitude, locate_Longitude, locate_url, locate_icon FROM maplocate ORDER BY locate_id DESC');
+								$stmt = $DB_con->prepare('SELECT * FROM locations ORDER BY id DESC');
 								$stmt->execute();	
 								if($stmt->rowCount() > 0)
 								{
@@ -157,18 +155,13 @@
 							?>
 							<tr>
                                  	<td valign="middle"><center><?php echo "$n";?></center></td>
-                                    <td valign="middle"><?php echo $locate_province; ?></td>
-                                    <td valign="middle">
-									<?php echo $locate_title; ?>
-                                    <br><font color="#9F9F9F"><?php echo $locate_des; ?></font>
-                                    </td>                             
-                                    <td valign="middle"><?php echo $locate_Latitude; ?></td>
-                                    <td valign="middle"><?php echo $locate_Longitude; ?></td>
-                                    <td valign="middle"><?php echo $locate_url; ?></td>
-                                    <td valign="middle"><center><img src="../icon/<?php echo $locate_icon; ?>" alt="" width="24px"/></center></td>  
-                                    <td valign="middle"><center><a href="#" onClick="CenterWindow(1024,768,10,'Location-AreaEDIT.php?edit_id=<?php echo $row['locate_id']; ?>',''); " href="javascript:void(0);" title="click for edit" ><img src="img/icon-edit.png" alt="" width="24px"/></a></center></td>
-                                    <td valign="middle"><center><a href="Location-EventArea.php?view_id=<?php echo $row['locate_url']; ?>"><img src="img/icon-viewmap.png" alt="" width="24px"/></a></center></td>
-                                    <td valign="middle"><center><a onClick="return confirm('Do you want to delete?');" href="?delete_id=<?php echo $row['locate_id']; ?>" onSubmit="return confirm('Do you want to delete?');" title="click for delete"><img src="img/icon-delete.png" alt="" width="24px"/></a>
+                                    <td valign="middle"><?php echo $lat; ?></td>
+                                    <td valign="middle"><?php echo $lng; ?></td>                             
+                                    <td valign="middle"><?php echo $description; ?></td>
+                                    <td valign="middle"><?php echo $type; ?></td>
+                                    <td valign="middle"><?php echo $url; ?></td>
+                                    <td valign="middle"><center><a href="#" onClick="CenterWindow(1024,768,10,'Location-AreaEDIT.php?edit_id=<?php echo $row['id']; ?>',''); " href="javascript:void(0);" title="click for edit" ><img src="img/icon-edit.png" alt="" width="24px"/></a></center></td>
+                                    <td valign="middle"><center><a onClick="return confirm('Do you want to delete?');" href="?delete_id=<?php echo $row['id']; ?>" onSubmit="return confirm('Do you want to delete?');" title="click for delete"><img src="img/icon-delete.png" alt="" width="24px"/></a>
                               </center></td>
 				  			</tr> 
                				<?php $n++; } } else { ?>

@@ -1,10 +1,10 @@
 <?php
-	foreach ($_GET as $key => $value) 
-	{
-		$_GET[$key]=addslashes(strip_tags(trim($value)));
-	}
-	if ($_GET['id'] !='') { $_GET['id']=(int) $_GET['id']; }
-	extract($_GET);
+	// foreach ($_GET as $key => $value) 
+	// {
+	// 	$_GET[$key]=addslashes(strip_tags(trim($value)));
+	// }
+	// if ($_GET['id'] !='') { $_GET['id']=(int) $_GET['id']; }
+	// extract($_GET);
 ?>
 <?php include "phpscript/security.php";?>
 <?php include_once "connections/dbconnect.php";?>
@@ -35,7 +35,7 @@
 	{
 		
 		// Delete record in DB
-		$stmt_delete = $DB_con->prepare('DELETE FROM location WHERE location_id =:uid');
+		$stmt_delete = $DB_con->prepare('DELETE FROM highadmin WHERE user_id =:uid');
 		$stmt_delete->bindParam(':uid',$_GET['delete_id']);
 		$stmt_delete->execute();
 		
@@ -91,7 +91,7 @@
  	 }
 	</script>
   	
-<title>EXO CNX Travel Map by Yuii Napat</title>
+<title>CMU-MAP</title>
 </head>
 <body>
 
@@ -109,7 +109,7 @@
         <!-- Header  -->
         <div id="panel-fullarea">
         <div class="panelfooter">
-        <div class="panel-title"><font size="+2">Main Location</font></div> 
+        <div class="panel-title"><font size="+2">Account</font></div> 
         </div>
         </div>   
         
@@ -127,16 +127,17 @@
                             <thead>
                                 <tr>
                                 <th style="text-align:centert">no.</th>
-                                <th style="text-align: center">latitude</th>
-                                <th style="text-align: center">longitude</th>
-                                <th style="text-align: center">zoom range</th>
+                                <th style="text-align: center">name</th>
+                                <th style="text-align: center">email</th>
+								<th style="text-align: center">status</th>
+
                                 <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                              <?php							 
 								$n=1;
-								$stmt = $DB_con->prepare('SELECT location_id, Latitude, Longitude, Zoom FROM location ORDER BY location_id DESC');
+								$stmt = $DB_con->prepare('SELECT * FROM highadmin ORDER BY user_id DESC');
 								$stmt->execute();	
 								if($stmt->rowCount() > 0)
 								{
@@ -146,10 +147,11 @@
 							?>
 							<tr>
                                  	<td valign="middle" align="center"><?php echo "$n";?></td>
-                                    <td valign="middle" align="center"><?php echo $Latitude; ?></td>
-                                    <td valign="middle" align="center"><?php echo $Longitude; ?></td>
-                                    <td valign="middle" align="center"><?php echo $Zoom ?></td>
-                                    <td valign="middle" align="center"><center><a onClick="return confirm('Do you want to delete?');" href="?delete_id=<?php echo $row['location_id']; ?>" onSubmit="return confirm('Do you want to delete?');" title="click for delete"><img src="img/icon-delete.png" alt="" width="24px"/></a>
+                                    <td valign="middle" align="center"><?php echo $name; ?></td>
+                                    <td valign="middle" align="center"><?php echo $email; ?></td>
+									<td valign="middle" align="center"><?php echo $LoginStatus; ?></td>
+
+                                    <td valign="middle" align="center"><center><a onClick="return confirm('Do you want to delete?');" href="?delete_id=<?php echo $row['user_id']; ?>" onSubmit="return confirm('Do you want to delete?');" title="click for delete"><img src="img/icon-delete.png" alt="" width="24px"/></a>
                               </center></td>
 				  			</tr> 
                				<?php $n++; } } else { ?>

@@ -8,9 +8,9 @@
 	<script src="js/windowcenter.js"></script>
 
     <ul class="cd-navigation">
-		<li><a href="WebUserAdmin/index.php">Login</a></li>
-		<li><a href="LocationAdministrator/index.php">Manage</a></li>
-		
+		<li><a href="LocationAdministrator/index.php">MANGE</a></li>
+		<li><a href="WebUserAdmin/index.php">LOGOUT</a></li>
+
 
 	</ul>
     

@@ -6,7 +6,7 @@
   $email = $_POST['email'];
   $pass = $_POST['pass'];
   $login = 'user';
-  $passmd5 = $pass;
+  $passmd5 = md5($pass);
 
   $sql="INSERT INTO `highadmin` (name, email, password, LoginStatus) VALUES (:p1,:p2,:p3,:p4)";
 	

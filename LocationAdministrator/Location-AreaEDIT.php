@@ -27,7 +27,7 @@ error_reporting( ~E_NOTICE );
 	if(isset($_GET['edit_id']) && !empty($_GET['edit_id']))
 	{
 		$id = $_GET['edit_id'];
-		$stmt_edit = $DB_con->prepare('SELECT locate_province, locate_title, locate_des, locate_Latitude, locate_Longitude, locate_zoom, locate_url, locate_icon FROM maplocate WHERE locate_id =:uid');
+		$stmt_edit = $DB_con->prepare('SELECT * FROM locations WHERE id =:uid');
 		$stmt_edit->execute(array(':uid'=>$id));
 		$edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
 		extract($edit_row);
@@ -149,7 +149,6 @@ error_reporting( ~E_NOTICE );
 <body>
 <div class="panel">
 	<div class="panel-header"><font color="#767676">Location Area</font><b> EDIT</b></div>
-    <form method="post" enctype="multipart/form-data" class="form-horizontal">
            
         <div class="panel-mainhalfL">   
             <div class="cell"><font color="#767676">Province</font>
@@ -159,13 +158,13 @@ error_reporting( ~E_NOTICE );
             </div> 
         </div>
         
-        <div class="panel-mainhalfR">
+        <!-- <div class="panel-mainhalfR">
             <div class="cell"><font color="#767676">Title</font>
             <div class="input-control text full-size">
             <input type="text" name="locatetitle" value="<? echo $locate_title; ?>">
             </div>
             </div> 
-        </div>
+        </div> -->
      
      <div class="panel-main">            
         <div class="cell"><font color="#767676">Description</font>
