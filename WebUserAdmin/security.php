@@ -1,0 +1,66 @@
+<?php
+function real_esc($array,$int=0){
+	if(count($array)>0){
+		if(is_array($array)){
+			foreach($array as $key=>$value){
+				if(@is_array($array[$key])){
+					foreach($array[$key] as $key_2=>$value_2){
+						if($_SERVER['REQUEST_METHOD']=='GET'){
+							if(get_magic_quotes_gpc()){
+								$_GET[$key][$key_2]=trim("$value_2");
+							}else{
+								$_GET[$key][$key_2]=@mysql_real_escape_string(trim("$value_2"));
+							}
+							$_GET[$key][$key_2]=($int==1)?(int)$_GET[$key][$key_2]:$_GET[$key][$key_2];
+						}else{
+							if(get_magic_quotes_gpc()){
+								$_POST[$key][$key_2]=trim("$value_2");
+							}else{
+								$_POST[$key][$key_2]=@mysql_real_escape_string(trim("$value_2"));
+							}
+							$_POST[$key][$key_2]=($int==1)?(int)$_POST[$key][$key_2]:$_POST[$key][$key_2];
+						}
+					}
+				}else{
+					if($_SERVER['REQUEST_METHOD']=='GET'){
+						if(get_magic_quotes_gpc()){
+							$_GET[$key]=trim("$value");
+						}else{
+							$_GET[$key]=@mysql_real_escape_string(trim("$value"));
+						}
+						$_GET[$key]=($int==1)?(int)$_GET[$key]:$_GET[$key];
+					}else{
+						if(get_magic_quotes_gpc()){
+							$_POST[$key]=trim("$value");
+						}else{
+							$_POST[$key]=@mysql_real_escape_string(trim("$value"));
+						}
+						$_POST[$key]=($int==1)?(int)$_POST[$key]:$_POST[$key];
+					}
+				}
+			}
+		}else{
+			$value=$array;
+			if($_SERVER['REQUEST_METHOD']=='GET'){
+				$getVars = array_keys($_GET);
+				$key=$getVars[0];
+				if(get_magic_quotes_gpc()){
+					$_GET[$key]=trim("$value");
+				}else{
+					$_GET[$key]=@mysql_real_escape_string(trim("$value"));
+				}
+				$_GET[$key]=($int==1)?(int)$_GET[$key]:$_GET[$key];
+			}else{
+				$getVars = array_keys($_POST);
+				$key=$getVars[0];
+				if(get_magic_quotes_gpc()){
+					$_POST[$key]=trim("$value");
+				}else{
+					$_POST[$key]=@mysql_real_escape_string(trim("$value"));
+				}
+				$_POST[$key]=($int==1)?(int)$_POST[$key]:$_POST[$key];
+			}
+		}
+	}
+}
+?>

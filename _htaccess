@@ -1,0 +1,36 @@
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine on		
+		
+RewriteRule ^Home/?$ index.php [NC,L] 
+RewriteRule ^LocationAdministrator/admin/?$ LocationAdministrator/index.php [NC,L] 
+RewriteRule ^WebUserAdmin/admin/?$ LocationAdministrator/index.php [NC,L] 
+
+RewriteRule ^([A-Za-z0-9-]+)/?$ event-marker.php?view_id=$1
+
+RewriteRule ([A-Za-z0-9-]+)\.NEWS$ newsView.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.NEWS-English$ newsEngView.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.PhD$ PhDcurriculum.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.PhD-English$ PhDcurriculumENG.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.MEng$ MCPEcurriculum.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.MEng-English$ MCPEcurriculumENG.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.CPE$ CPEcurriculum.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.CPE-English$ CPEcurriculumENG.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.ISNE$ ISNEcurriculum.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.ISNE-English$ ISNEcurriculumENG.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.GALLERY$ galleryView.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.GALLERY-English$ galleryEngView.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.PAGE$ pageView.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.PAGE-English$ pageEngView.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.English$ academicEngView.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.SupportStaff$ supportView.php?view_id=$1 [L]
+RewriteRule ([A-Za-z0-9-]+)\.SupportStaff-English$ supportEngView.php?view_id=$1 [L]
+
+</IfModule>
+
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+#main-from {
+	margin: auto;
+	clear: none;
+	float: none;
+	height: 500px;
+	width: 700px;
+	text-align: center;
+}
+.top-page {
+	clear: none;
+	float: left;
+	height: 30px;
+	width: 480px;
+	margin-top: 30px;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: 20px;
+}
+.head-input {
+	clear: none;
+	float: left;
+	height: auto;
+	width: 250px;
+	margin-top: 5px;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #333;
+}
+.input-box {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 16px;
+	clear: none;
+	float: left;
+	height: 300px;
+	width: 700px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	text-align: center;
+}
+.design1{
+	border: 1px solid #999;
+	height: 28px;
+	width: auto;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+.classname {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 7px;
+  font-family:Arial, Helvetica, sans-serif;
+  color:#F0F0F0;
+  font-size: 1em;
+  background:#8E8E8E;
+  padding: 10px 20px 10px 20px;
+  border: solid #e6e6e6 1px;
+  text-decoration: none;
+}
+.classname:hover {
+	color:#F1F1F1;
+  	background: #383738;
+	border: solid #383738 1px;
+  	text-decoration: none;
+}
+.classname:active {
+	position:relative;
+	top:1px;
+}
+.add-botton {
+	clear: none;
+	float: none;
+	height: 30px;
+	width: 150px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	text-align: center;
+}

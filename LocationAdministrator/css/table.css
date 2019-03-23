@@ -1,0 +1,20 @@
+	table {  width: 100%;  border-collapse: collapse; }
+	th { color:#DCB6E3; background-color:#575757; font-family: 'Quicksand', sans-serif; font-size:0.9em; }
+	td {	font-family: 'Athiti', sans-serif;, sans-serif; font-size:0.9em; }
+	td, th {  padding: 6px;  border: 1px solid  #575757;  text-align: left;  }
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px)  {
+	table, thead, tbody, th, td, tr { display: block; }
+	thead tr { position: absolute; top: -9999px; left: -9999px; }
+	tr { border: 1px solid #575757; }		
+	td { font-size:0.9em; border: none; border-bottom: 1px solid #575757;  position: relative; padding: 1%; }
+	td:before { position: absolute; top: 6px; left: 6px; width: 45%;  white-space: nowrap; font-weight:bold; }
+	}
+	
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) { }
+	
+@media only screen and (min-width: 1170px) 
+{		
+		th { padding: 1.5%; }
+		td { font-size: 0.9em; padding: 1.5%;}
+}
