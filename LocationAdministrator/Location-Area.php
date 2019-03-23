@@ -1,14 +1,6 @@
-<?php
-	// foreach ($_GET as $key => $value) 
-	// {
-	// 	$_GET[$key]=addslashes(strip_tags(trim($value)));
-	// }
-	// if ($_GET['id'] !='') { $_GET['id']=(int) $_GET['id']; }
-	// extract($_GET);
-?>
 <?php include "phpscript/security.php";?>
-<?php include_once "connections/dbconnect.php";?>
-<?php include_once "connections/dbconfig.php";?>
+<?php include_once "Connections/dbconnect.php";?>
+<?php include_once "Connections/dbconfig.php";?>
 <?php
 
 	session_start();
@@ -17,7 +9,7 @@
 	{
 		header("Location:index.php");
 	}
-	include_once 'connections/dbconnect.php';
+	include_once 'Connections/dbconnect.php';
 	$error = false;
 ?>
 <?php
@@ -98,6 +90,7 @@
 	</script>
   	
 <title>CMU-MAP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
 
