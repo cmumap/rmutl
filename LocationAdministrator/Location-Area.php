@@ -125,11 +125,11 @@
                         <table id="example" class="display" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                <th style="text-align:centert">no.</th>
-                                <th style="text-align:centert">lat</th>
-                                <th style="text-align: center">lng</th>
-                                <th style="text-align: center">des</th>
-                                <th style="text-align: center">type</th>
+                                <th style="text-align:centert">NO.</th>
+                                <th style="text-align:centert">LAT</th>
+                                <th style="text-align: center">LNG</th>
+                                <th style="text-align: center">DESCRIPTION</th>
+                                <th style="text-align: center">TYPE</th>
                                 <th style="text-align: center">URL</th>
                                 <th></th>
                                 <th></th>
