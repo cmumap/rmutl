@@ -6,7 +6,7 @@
         echo "<script>alert('กรุณาเข้าสู่ระบบในฐานะผู้ดูแล');</script>";
         echo "<script>window.location='WebUserAdmin/index.php';</script>";
     }
-//test
+//test //test //test
 ?>
 
 <?php
