@@ -1,5 +1,4 @@
 <?php
-
     session_start();
 
     if(isset($_SESSION['administrator'])=="")
@@ -126,11 +125,11 @@ include_once 'locations_model.php';
             <td><textarea disabled id='description' placeholder='Description'></textarea></td>
         </tr>
         <tr>
-            <td><b>Confirm Location ?:</b></td>
+            <td><a>Confirm Location ?:</a></td>
             <td><input id='confirmed' type='checkbox' name='confirmed'></td>
         </tr>
         <tr>
-            <td><b>Type:</b></td>
+            <td><a>Type:</a></td>
             <td><input id='types' type='text' name='type' disabled></td>
         </tr>
 

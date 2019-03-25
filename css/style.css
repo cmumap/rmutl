@@ -193,3 +193,19 @@ no-touch #cd-lateral-nav .socials a:hover.cd-google { background-position: -96px
 	margin-top:10px;
 }
 
+table{width: 20px;height: 100px;}
+
+table select {width: 12em;}
+
+
+table #savemark {
+	text-align: center;
+	margin-left: 80px;
+}
+
+table #deletemark {
+	text-align: center;
+}
+
+.map1{width: 300px; height: 120px; } 
+
