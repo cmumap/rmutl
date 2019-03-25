@@ -27,7 +27,7 @@ error_reporting( ~E_NOTICE );
 	if(isset($_GET['edit_id']) && !empty($_GET['edit_id']))
 	{
 		$id = $_GET['edit_id'];
-		$stmt_edit = $DB_con->prepare('SELECT * FROM locations WHERE id =:uid');
+		$stmt_edit = $DB_con->prepare('SELECT * FROM highadmin WHERE user_id =:uid');
 		$stmt_edit->execute(array(':uid'=>$id));
 		$edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
 		extract($edit_row);
@@ -47,11 +47,10 @@ error_reporting( ~E_NOTICE );
 	if(isset($_POST['btn_save_updates']))
 	{
 		// $province = $_POST['locateprovince'];
-		$des = $_POST['locatedes'];
-		$Latitude = $_POST['locateLatitude'];
-		$Longitude = $_POST['locateLongitude'];
-		$type = $_POST['locatetype'];
-		$url = $_POST['locateurl'];
+		$des = $_POST['Mainname'];
+		$Latitude = $_POST['Mainemail'];
+		$Longitude = $_POST['Mainloginstatus'];
+		
 		
 		// $imgFile = $_FILES['locateicon']['name'];
 		// $tmp_dir = $_FILES['locateicon']['tmp_name'];
@@ -80,12 +79,10 @@ error_reporting( ~E_NOTICE );
 		
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('UPDATE locations SET description=:p1, lat=:p2, lng=:p3, type=:p4, url=:p5 WHERE id=:uid');					
+			$stmt = $DB_con->prepare('UPDATE highadmin SET name=:p1, email=:p2, LoginStatus=:p3 WHERE user_id=:uid');					
 			$stmt->bindParam(':p1',$des);
 			$stmt->bindParam(':p2',$Latitude);
 			$stmt->bindParam(':p3',$Longitude);
-			$stmt->bindParam(':p4',$type);
-			$stmt->bindParam(':p5',$url);
 			$stmt->bindParam(':uid',$id);
 
 			// $stmt->bindParam(':uicon',$icon);
@@ -148,7 +145,7 @@ error_reporting( ~E_NOTICE );
 
 <form action="" method="POST">
 <div class="panel">
-	<div class="panel-header"><font color="#767676">Location Area</font><b> EDIT</b></div>
+	<div class="panel-header"><font color="#767676">Location Main</font><b> EDIT</b></div>
            
         <!-- <div class="panel-mainhalfL">   
             <div class="cell"><font color="#767676">Province</font>
@@ -167,53 +164,30 @@ error_reporting( ~E_NOTICE );
         </div> -->
      
      <div class="panel-main">            
-        <div class="cell"><font color="#767676">Description</font>
+        <div class="cell"><font color="#767676">Name</font>
         <div class="input-control textarea full-size">
-        <input type="text" name="locatedes" value="<? echo $description; ?>">
+        <input type="text" name="Mainname" value="<? echo $name; ?>">
         </div>
         </div>
     </div>
 
     <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">Latitude Add</font>
+   		<div class="cell"><font color="#767676">Email</font>
    		<div class="input-control text full-size">
-  		<input type="text" class="float" name="locateLatitude" value="<? echo $lat; ?>">
+  		<input type="email" class="float" name="Mainemail" value="<? echo $email; ?>">
    		</div>
     	</div>  
    	</div>
   	
     <div class="panel-mainhalfR">
-   		<div class="cell"><font color="#767676">Longtitude Add</font>
+   		<div class="cell"><font color="#767676">Status</font>
    		<div class="input-control text full-size">
-  		<input type="text" class="float" name="locateLongitude" value="<? echo $lng; ?>">
+  		<input type="text" class="float" name="Mainloginstatus" value="<? echo $LoginStatus; ?>" readonly>
    		</div>
     	</div>  
     </div>
     
-    <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">Location Type</font>
-   		<div class="input-control text full-size">
-			   <select name="locatetype" id="mheeselect">
-					<option value="<? echo $type; ?>"> <? echo"$type" ?></option>
-					<option value="ธนาคาร"> <? echo"ธนาคาร" ?></option>
-					<option value="โรงอาหาร"> <? echo"โรงอาหาร" ?></option>
-					<option value="ตู้ ATM"> <? echo"ตู้ ATM" ?></option>
-					<option value="ป้ายรถม่วง"> <? echo"ป้ายรถม่วง" ?></option>
-					<option value="ร้านกาแฟ"> <? echo"ร้านกาแฟ" ?></option>
-
-			   
-			   </select>
-   		</div>
-    	</div>  
-   	</div>
-    
-    <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">URL</font>
-   		<div class="input-control text full-size">
-  		<input type="text" name="locateurl" value="<? echo $url; ?>">
-   		</div>
-    	</div>  
-   	</div>
+   
 
     <!-- <div class="panel-mainhalfL">           
        	<div class="cell">

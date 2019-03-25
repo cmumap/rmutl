@@ -118,6 +118,8 @@
                 "                <td><input text  id='manual_description' placeholder='Description'></td></tr>\n" +
                 "                <td><a>Type :</a></td>\n" +
                 "                <td><select  id='manual_type' placeholder='Description'> <option> ธนาคาร </option><option> โรงอาหาร </option><option> ตู้ ATM </option><option> ป้ายรถม่วง </option><option> ร้านกาแฟ </option></select></td></tr>\n" +
+                "                <td><a>Url:</a></td>\n" +
+                "                <td><input text  id='manual_description' placeholder='Url'></td></tr>\n" +
                 "               <tr><td><input type='button' id='savemark' value='Save' onclick='saveData("+lat+","+lng+")'/></td>" +
                 "               <td><input type='button' id='deletemark'value='Remove' onclick='deletemark()'/></td></tr> " +
 
@@ -189,6 +191,8 @@
                 "<td><textarea disabled id='manual_description' placeholder='Description'>"+locations[i][3]+"</textarea></td></tr>\n" +
                 "<td><a>Type:</a></td>\n" +
                 "<td><textarea disabled id='manual_description' placeholder='Description'>"+locations[i][5]+"</textarea></td></tr>\n" +
+                "<br>"+
+                "<td><a>Url:</a></td>\n" +
                 "<td><a href="+locations[i][6]+" target='_blank'>Direct</a></td></tr>\n" +
                 "</table>\n" +
                 "</div>"

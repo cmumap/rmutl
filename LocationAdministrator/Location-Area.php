@@ -26,10 +26,10 @@
 	if(isset($_GET['delete_id']))
 	{
 		// Delete image & file in DB
-		$stmt_select = $DB_con->prepare('SELECT locate_icon FROM maplocate WHERE locate_id =:uid');
-		$stmt_select->execute(array(':uid'=>$_GET['delete_id']));
-		$imgRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
-		unlink("../icon/".$imgRow['locate_icon']);
+		// $stmt_select = $DB_con->prepare('SELECT locate_icon FROM maplocate WHERE locate_id =:uid');
+		// $stmt_select->execute(array(':uid'=>$_GET['delete_id']));
+		// $imgRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
+		// unlink("../icon/".$imgRow['locate_icon']);
 
 		
 		// Delete record in DB

@@ -150,7 +150,7 @@
                                     <td valign="middle" align="center"><?php echo $name; ?></td>
                                     <td valign="middle" align="center"><?php echo $email; ?></td>
 									<td valign="middle" align="center"><?php echo $LoginStatus; ?></td>
-
+                                    <td valign="middle"><center><a href="#" onClick="CenterWindow(1024,768,10,'Location-MainEDIT.php?edit_id=<?php echo $row['user_id']; ?>',''); " href="javascript:void(0);" title="click for edit" ><img src="img/icon-edit.png" alt="" width="24px"/></a></center></td>
                                     <td valign="middle" align="center"><center><a onClick="return confirm('Do you want to delete?');" href="?delete_id=<?php echo $row['user_id']; ?>" onSubmit="return confirm('Do you want to delete?');" title="click for delete"><img src="img/icon-delete.png" alt="" width="24px"/></a>
                               </center></td>
 				  			</tr> 

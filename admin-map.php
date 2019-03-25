@@ -76,6 +76,8 @@ include_once 'locations_model.php';
                     $("#id").val(locations[i][0]);
                     $("#description").val(locations[i][3]);
                     $("#types").val(locations[i][5]);
+                    $("#url").val(locations[i][6]);
+
                     $("#form").show();
                     infowindow.setContent(marker.html);
                     infowindow.open(map, marker);
@@ -132,7 +134,10 @@ include_once 'locations_model.php';
             <td><a>Type:</a></td>
             <td><input id='types' type='text' name='type' disabled></td>
         </tr>
-
+        <tr>
+            <td><a>Url:</a></td>
+            "<td><a href="#" id="url">Direct</a></td></tr>\n" +
+        </tr>
         <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
     </table>
 </div>
