@@ -8,7 +8,7 @@ unset($_SESSION["userpass"]);
 ?>
 <?php
 
-	$url = "index.php";
+	$url = "../logout.php";
 	if(isset($_GET["session_expired"]))
 	{
 		$url .= "?session_expired=" . $_GET["session_expired"];

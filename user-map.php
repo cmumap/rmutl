@@ -112,14 +112,14 @@
                 animation: google.maps.Animation.DROP,
                 id: 'marker_' + markerId,
                 html: "    <div id='info_"+markerId+"'>\n" +
-                "        <table class=\"map1\">\n" +
+                "        <table >\n" +
                 "            <tr>\n" +
                 "                <td><a>Description:</a></td>\n" +
                 "                <td><input text  id='manual_description' placeholder='Description'></td></tr>\n" +
                 "                <td><a>Type :</a></td>\n" +
                 "                <td><select  id='manual_type' placeholder='Description'> <option> ธนาคาร </option><option> โรงอาหาร </option><option> ตู้ ATM </option><option> ป้ายรถม่วง </option><option> ร้านกาแฟ </option></select></td></tr>\n" +
-                "               <tr><td></td><td><input type='button' value='Save' onclick='saveData("+lat+","+lng+")'/></td></tr> " +
-                "               <tr><td></td><td><input type='button' value='Remove' onclick='deletemark()'/></td></tr> " +
+                "               <tr><td><input type='button' id='savemark' value='Save' onclick='saveData("+lat+","+lng+")'/></td>" +
+                "               <td><input type='button' id='deletemark'value='Remove' onclick='deletemark()'/></td></tr> " +
 
                 "        </table>\n" +
                 "    </div>"

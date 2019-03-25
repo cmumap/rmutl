@@ -9,7 +9,7 @@
 
     <ul class="cd-navigation">
 		<li><a href="LocationAdministrator/index.php">MANGE</a></li>
-		<li><a href="WebUserAdmin/index.php">LOGOUT</a></li>
+		<li><a href="WebUserAdmin/logout.php">LOGOUT</a></li>
 
 
 	</ul>

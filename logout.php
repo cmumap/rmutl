@@ -3,6 +3,7 @@ session_start();
 unset($_SESSION["administrator"]);
 unset($_SESSION["username"]);
 unset($_SESSION["userpass"]);
+unset($_SESSION["user"]);
 ?>
 <?php
 	$url = "index.php";
