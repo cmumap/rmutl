@@ -22,14 +22,16 @@ function add_location(){
     $lng = $_GET['lng'];
     $description =$_GET['description'];
     $types = $_GET['types'];
+    $urls = $_GET['urls'];
     // Inserts new row with place data.
     $query = sprintf("INSERT INTO locations " .
-        " (id, lat, lng, description, type) " .
-        " VALUES (NULL, '%s', '%s', '%s', '%s');",
+        " (id, lat, lng, description, type, url) " .
+        " VALUES (NULL, '%s', '%s', '%s', '%s' ,'%s');",
         mysqli_real_escape_string($con,$lat),
         mysqli_real_escape_string($con,$lng),
         mysqli_real_escape_string($con,$description),
-        mysqli_real_escape_string($con,$types));
+        mysqli_real_escape_string($con,$types),
+        mysqli_real_escape_string($con,$urls));
         
 
     $result = mysqli_query($con,$query);

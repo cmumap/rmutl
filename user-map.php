@@ -119,7 +119,7 @@
                 "                <td><a>Type :</a></td>\n" +
                 "                <td><select  id='manual_type' placeholder='Description'> <option> ธนาคาร </option><option> โรงอาหาร </option><option> ตู้ ATM </option><option> ป้ายรถม่วง </option><option> ร้านกาแฟ </option></select></td></tr>\n" +
                 "                <td><a>Url:</a></td>\n" +
-                "                <td><input text  id='manual_description' placeholder='Url'></td></tr>\n" +
+                "                <td><input text  id='manual_url' placeholder='Url'></td></tr>\n" +
                 "               <tr><td><input type='button' id='savemark' value='Save' onclick='saveData("+lat+","+lng+")'/></td>" +
                 "               <td><input type='button' id='deletemark'value='Remove' onclick='deletemark()'/></td></tr> " +
 
@@ -226,7 +226,8 @@
         function saveData(lat,lng) {
             var description = document.getElementById('manual_description').value;
             var types = document.getElementById('manual_type').value;
-            var url = 'locations_model.php?add_location&description=' + description + '&types=' + types + '&lat=' + lat + '&lng=' + lng;
+            var urls = document.getElementById('manual_url').value;
+            var url = 'locations_model.php?add_location&description=' + description + '&types=' + types + '&lat=' + lat + '&lng=' + lng + '&urls=' + urls;
             downloadUrl(url, function(data, responseCode) {
                 if (responseCode === 200  && data.length > 1) {
                     var markerId = getMarkerUniqueId(lat,lng); // get marker id by using clicked point's coordinate
