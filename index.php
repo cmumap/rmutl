@@ -183,7 +183,7 @@
                 "<td><a>Type:</a></td>\n" +
                 "<td><textarea disabled id='manual_description' placeholder='Description'>"+locations[i][5]+"</textarea></td></tr>\n" +
                 "<td><a>Url:</a></td>\n" +
-                "<td><a href="+locations[i][6]+" target='_blank'>Direct</a></td></tr>\n" +
+                "<td><a href="+locations[i][6]+">Direct</a></td></tr>\n" +
                 "</table>\n" +
                 "</div>"
             });

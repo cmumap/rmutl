@@ -180,6 +180,11 @@
             else if(locations[i][5]=="ป้ายรถม่วง"){$a = bus;}
             else if(locations[i][5]=="ร้านกาแฟ"){$a = coff;}
             else{$a = red_icon;}
+            if(locations[i][6]==null){
+                $local = '#';
+            }else{
+                $local = locations[i][6];
+            }
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                 map: map,
@@ -193,7 +198,7 @@
                 "<td><textarea disabled id='manual_description' placeholder='Description'>"+locations[i][5]+"</textarea></td></tr>\n" +
                 "<br>"+
                 "<td><a>Url:</a></td>\n" +
-                "<td><a href="+locations[i][6]+" target='_blank'>Direct</a></td></tr>\n" +
+                "<td><a href="+$local+">Direct</a></td></tr>\n" +
                 "</table>\n" +
                 "</div>"
             });

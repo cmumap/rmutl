@@ -1,3 +1,5 @@
+<link rel="icon" href="..\img\icon.png">
+
 <?php include "phpscript/security.php";?>
 <?php include_once "connections/dbconnect.php";?>
 <?php include_once "connections/dbconfig.php";?>
@@ -150,13 +152,13 @@ error_reporting( ~E_NOTICE );
 <div class="panel">
 	<div class="panel-header"><font color="#767676">Location Area</font><b> EDIT</b></div>
            
-        <!-- <div class="panel-mainhalfL">   
-            <div class="cell"><font color="#767676">Province</font>
+        <div class="panel-main">   
+            <div class="cell"><font color="#767676">Description</font>
             <div class="input-control text full-size">
-            <input type="text" name="locateprovince" value="<? echo $locate_province; ?>">
+            <input type="text" name="locatedes" value="<? echo $description; ?>">
             </div>
             </div> 
-        </div> -->
+        </div>
         
         <!-- <div class="panel-mainhalfR">
             <div class="cell"><font color="#767676">Title</font>
@@ -166,13 +168,13 @@ error_reporting( ~E_NOTICE );
             </div> 
         </div> -->
      
-     <div class="panel-main">            
+     <!-- <div class="panel-main">            
         <div class="cell"><font color="#767676">Description</font>
         <div class="input-control textarea full-size">
         <input type="text" name="locatedes" value="<? echo $description; ?>">
         </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="panel-mainhalfL">
    		<div class="cell"><font color="#767676">Latitude Add</font>
@@ -182,7 +184,7 @@ error_reporting( ~E_NOTICE );
     	</div>  
    	</div>
   	
-    <div class="panel-mainhalfR">
+    <div class="panel-mainhalfL">
    		<div class="cell"><font color="#767676">Longtitude Add</font>
    		<div class="input-control text full-size">
   		<input type="text" class="float" name="locateLongitude" value="<? echo $lng; ?>">

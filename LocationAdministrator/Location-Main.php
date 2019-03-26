@@ -1,3 +1,5 @@
+<link rel="icon" href="..\img\icon.png">
+
 <?php
 	// foreach ($_GET as $key => $value) 
 	// {

@@ -1,3 +1,5 @@
+<link rel="icon" href="..\img\icon.png">
+
 <?php include "phpscript/security.php";?>
 <?php include_once "connections/dbconnect.php";?>
 <?php include_once "connections/dbconfig.php";?>
@@ -147,13 +149,13 @@ error_reporting( ~E_NOTICE );
 <div class="panel">
 	<div class="panel-header"><font color="#767676">Location Main</font><b> EDIT</b></div>
            
-        <!-- <div class="panel-mainhalfL">   
-            <div class="cell"><font color="#767676">Province</font>
+        <div class="panel-mainhalfL">   
+            <div class="cell"><font color="#767676">Name</font>
             <div class="input-control text full-size">
-            <input type="text" name="locateprovince" value="<? echo $locate_province; ?>">
+            <input type="text" name="Mainname" value="<? echo $name; ?>">
             </div>
             </div> 
-        </div> -->
+        </div>
         
         <!-- <div class="panel-mainhalfR">
             <div class="cell"><font color="#767676">Title</font>
@@ -161,7 +163,7 @@ error_reporting( ~E_NOTICE );
             <input type="text" name="locatetitle" value="<? echo $locate_title; ?>">
             </div>
             </div> 
-        </div> -->
+        </div>
      
      <div class="panel-main">            
         <div class="cell"><font color="#767676">Name</font>
@@ -169,7 +171,7 @@ error_reporting( ~E_NOTICE );
         <input type="text" name="Mainname" value="<? echo $name; ?>">
         </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="panel-mainhalfL">
    		<div class="cell"><font color="#767676">Email</font>
