@@ -1,6 +1,8 @@
 <?php include "phpscript/security.php";?>
 <?php include_once "Connections/dbconnect.php";?>
 <?php include_once "Connections/dbconfig.php";?>
+<link rel="icon" href="..\img\icon.png">
+
 <?php
 
 	session_start();
@@ -26,10 +28,10 @@
 	if(isset($_GET['delete_id']))
 	{
 		// Delete image & file in DB
-		$stmt_select = $DB_con->prepare('SELECT locate_icon FROM maplocate WHERE locate_id =:uid');
-		$stmt_select->execute(array(':uid'=>$_GET['delete_id']));
-		$imgRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
-		unlink("../icon/".$imgRow['locate_icon']);
+		// $stmt_select = $DB_con->prepare('SELECT locate_icon FROM maplocate WHERE locate_id =:uid');
+		// $stmt_select->execute(array(':uid'=>$_GET['delete_id']));
+		// $imgRow=$stmt_select->fetch(PDO::FETCH_ASSOC);
+		// unlink("../icon/".$imgRow['locate_icon']);
 
 		
 		// Delete record in DB
@@ -152,7 +154,7 @@
                                     <td valign="middle"><?php echo $lng; ?></td>                             
                                     <td valign="middle"><?php echo $description; ?></td>
                                     <td valign="middle"><?php echo $type; ?></td>
-                                    <td valign="middle"><?php echo $url; ?></td>
+                                    <td valign="middle">  <a href=" <?php echo $url; ?>" target="_blank"><?php echo $url; ?>  </a></td>
                                     <td valign="middle"><center><a href="#" onClick="CenterWindow(1024,768,10,'Location-AreaEDIT.php?edit_id=<?php echo $row['id']; ?>',''); " href="javascript:void(0);" title="click for edit" ><img src="img/icon-edit.png" alt="" width="24px"/></a></center></td>
                                     <td valign="middle"><center><a onClick="return confirm('Do you want to delete?');" href="?delete_id=<?php echo $row['id']; ?>" onSubmit="return confirm('Do you want to delete?');" title="click for delete"><img src="img/icon-delete.png" alt="" width="24px"/></a>
                               </center></td>

@@ -118,6 +118,8 @@
                 "                <td><input text  id='manual_description' placeholder='Description'></td></tr>\n" +
                 "                <td><a>Type :</a></td>\n" +
                 "                <td><select  id='manual_type' placeholder='Description'> <option> ธนาคาร </option><option> โรงอาหาร </option><option> ตู้ ATM </option><option> ป้ายรถม่วง </option><option> ร้านกาแฟ </option></select></td></tr>\n" +
+                "                <td><a>Url:</a></td>\n" +
+                "                <td><input text  id='manual_url' placeholder='Url'></td></tr>\n" +
                 "               <tr><td><input type='button' id='savemark' value='Save' onclick='saveData("+lat+","+lng+")'/></td>" +
                 "               <td><input type='button' id='deletemark'value='Remove' onclick='deletemark()'/></td></tr> " +
 
@@ -178,6 +180,11 @@
             else if(locations[i][5]=="ป้ายรถม่วง"){$a = bus;}
             else if(locations[i][5]=="ร้านกาแฟ"){$a = coff;}
             else{$a = red_icon;}
+            if(locations[i][6]==null){
+                $local = '#';
+            }else{
+                $local = locations[i][6];
+            }
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                 map: map,
@@ -189,7 +196,9 @@
                 "<td><textarea disabled id='manual_description' placeholder='Description'>"+locations[i][3]+"</textarea></td></tr>\n" +
                 "<td><a>Type:</a></td>\n" +
                 "<td><textarea disabled id='manual_description' placeholder='Description'>"+locations[i][5]+"</textarea></td></tr>\n" +
-                "<td><a href="+locations[i][6]+" target='_blank'>Direct</a></td></tr>\n" +
+                "<br>"+
+                "<td><a>Url:</a></td>\n" +
+                "<td><a href="+$local+">Direct</a></td></tr>\n" +
                 "</table>\n" +
                 "</div>"
             });
@@ -217,7 +226,8 @@
         function saveData(lat,lng) {
             var description = document.getElementById('manual_description').value;
             var types = document.getElementById('manual_type').value;
-            var url = 'locations_model.php?add_location&description=' + description + '&types=' + types + '&lat=' + lat + '&lng=' + lng;
+            var urls = document.getElementById('manual_url').value;
+            var url = 'locations_model.php?add_location&description=' + description + '&types=' + types + '&lat=' + lat + '&lng=' + lng + '&urls=' + urls;
             downloadUrl(url, function(data, responseCode) {
                 if (responseCode === 200  && data.length > 1) {
                     var markerId = getMarkerUniqueId(lat,lng); // get marker id by using clicked point's coordinate

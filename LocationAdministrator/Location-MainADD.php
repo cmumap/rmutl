@@ -27,16 +27,18 @@
 	if(isset($_POST['btnsave']))
 	{
 
-		$Latitude = $_POST['Latitude'];
-		$Longitude = $_POST['Longitude'];
-		$Zoom = $_POST['Zoom'];
+		$name = $_POST['nameadd'];
+		$email = $_POST['emailadd'];
+		$pass = md5($_POST['passadd']);
+		$status = $_POST['statusadd'];
 		
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('INSERT INTO location(Latitude, Longitude, Zoom) VALUES(:ulatitude, :ulongitude , :uzoom)');
-			$stmt->bindParam(':ulatitude',$Latitude);
-			$stmt->bindParam(':ulongitude',$Longitude);
-			$stmt->bindParam(':uzoom',$Zoom);
+			$stmt = $DB_con->prepare('INSERT INTO highadmin (name, email, password , LoginStatus ) VALUES(:p1, :p2 , :p3 , :p4)');
+			$stmt->bindParam(':p1',$name);
+			$stmt->bindParam(':p2',$email);
+			$stmt->bindParam(':p3',$pass);
+			$stmt->bindParam(':p4',$status);
 
 			
 			if($stmt->execute())
@@ -94,30 +96,47 @@
 	<div class="panel-header"><font color="#767676">Main Location</font><b> ADD</b></div>
     <form method="post" enctype="multipart/form-data" class="form-horizontal">
            
-    <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">Latitude Add</font>
+	<div class="panel-mainhalfL">
+   		<div class="cell"><font color="#767676">Name Add</font>
    		<div class="input-control text full-size">
-  		<input type="text" class="float" name="Latitude" placeholder="Latitude Add" required>
+  		<input type="text" class="float" name="nameadd">
    		</div>
     	</div>  
    	</div>
   	
-    <div class="panel-mainhalfR">
-   		<div class="cell"><font color="#767676">Longtitude Add</font>
+    <div class="panel-mainhalfL">
+   		<div class="cell"><font color="#767676">Email Add</font>
    		<div class="input-control text full-size">
-  		<input type="text" class="float" name="Longitude" placeholder="Longitude Add" required>
+  		<input type="email" class="float" name="emailadd">
    		</div>
     	</div>  
     </div>
-    
-    <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">Location Zoom</font>
+
+	<div class="panel-mainhalfL">
+   		<div class="cell"><font color="#767676">Password Add</font>
    		<div class="input-control text full-size">
-  		<input type="number" name="Zoom" placeholder="Zoom Range" required>
+  		<input type="password" class="float" name="passadd">
+   		</div>
+    	</div>  
+    </div>
+
+    <div class="panel-mainhalfL">
+   		<div class="cell"><font color="#767676">Status Add</font>
+   		<div class="input-control text full-size">
+			   <select name="statusadd" id="mheeselect">
+					<option value="admin"> admin </option>
+					<option value="user">user</option>
+					
+
+			   
+			   </select>
    		</div>
     	</div>  
    	</div>
     
+
+
+	  
     <div class="panel-bottom">
          	<input type="submit" name="btnsave" value="SAVE" class="btn" />
            	<input type="button" value="CLOSE" onclick="window_close();" title="close" class="btn">

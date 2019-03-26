@@ -59,9 +59,15 @@
 	padding: 1%;
 	float:left;
 }
+.panel-mainhalfLs
+{
+	width:100%;
+	padding: 1%;
+	float:left;
+}
 .panel-mainhalfR
 {
-	width:50%;
+	width:100%;
 	padding: 1%;
 	float:right;
 }

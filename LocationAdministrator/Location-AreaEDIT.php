@@ -1,3 +1,5 @@
+<link rel="icon" href="..\img\icon.png">
+
 <?php include "phpscript/security.php";?>
 <?php include_once "connections/dbconnect.php";?>
 <?php include_once "connections/dbconfig.php";?>
@@ -46,51 +48,49 @@ error_reporting( ~E_NOTICE );
 	}	
 	if(isset($_POST['btn_save_updates']))
 	{
-		$province = $_POST['locateprovince'];
-		$title = $_POST['locatetitle'];
+		// $province = $_POST['locateprovince'];
 		$des = $_POST['locatedes'];
 		$Latitude = $_POST['locateLatitude'];
 		$Longitude = $_POST['locateLongitude'];
-		$zoom = $_POST['locatezoom'];
+		$type = $_POST['locatetype'];
 		$url = $_POST['locateurl'];
 		
-		$imgFile = $_FILES['locateicon']['name'];
-		$tmp_dir = $_FILES['locateicon']['tmp_name'];
-		$imgSize = $_FILES['locateicon']['size'];
+		// $imgFile = $_FILES['locateicon']['name'];
+		// $tmp_dir = $_FILES['locateicon']['tmp_name'];
+		// $imgSize = $_FILES['locateicon']['size'];
 				
-		if($imgFile)
-		{
-					$upload_dir = '../icon/';
-					$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); 
-					$valid_extensions = array('jpeg', 'jpg','png'); 				
-					date_default_timezone_set('Asia/Bangkok');
-					$icon = "AraeLocate-".date('Ymd-His').".".$imgExt;
+		// if($imgFile)
+		// {
+		// 			$upload_dir = '../icon/';
+		// 			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); 
+		// 			$valid_extensions = array('jpeg', 'jpg','png'); 				
+		// 			date_default_timezone_set('Asia/Bangkok');
+		// 			$icon = "AraeLocate-".date('Ymd-His').".".$imgExt;
 					
-					if(in_array($imgExt, $valid_extensions))
-					{			
-						if($locate_icon == null) { move_uploaded_file($tmp_dir,$upload_dir.$icon); }
-						else if($locate_icon != null)
-						{
-							unlink($upload_dir.$edit_row['locate_icon']);
-							move_uploaded_file($tmp_dir,$upload_dir.$icon);
-						}
-					}
-					else { $errMSG = "Sorry, only JPG & JPEG files are allowed.";	}	
-				}
-				else { $icon = $edit_row['locate_icon']; }	
+		// 			if(in_array($imgExt, $valid_extensions))
+		// 			{			
+		// 				if($locate_icon == null) { move_uploaded_file($tmp_dir,$upload_dir.$icon); }
+		// 				else if($locate_icon != null)
+		// 				{
+		// 					unlink($upload_dir.$edit_row['locate_icon']);
+		// 					move_uploaded_file($tmp_dir,$upload_dir.$icon);
+		// 				}
+		// 			}
+		// 			else { $errMSG = "Sorry, only JPG & JPEG files are allowed.";	}	
+		// 		}
+		// 		else { $icon = $edit_row['locate_icon']; }	
 		
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('UPDATE maplocate SET locate_province=:uprovince, locate_title=:utitle, locate_des=:udes, locate_Latitude=:ulatitude, locate_Longitude=:ulongitude, locate_zoom=:uzoom, locate_url=:uurl, locate_icon=:uicon WHERE locate_id=:uid');					
-			$stmt->bindParam(':uprovince',$province);
-			$stmt->bindParam(':utitle',$title);
-			$stmt->bindParam(':udes',$des);
-			$stmt->bindParam(':ulatitude',$Latitude);
-			$stmt->bindParam(':ulongitude',$Longitude);
-			$stmt->bindParam(':uzoom',$zoom);
-			$stmt->bindParam(':uurl',$url);
-			$stmt->bindParam(':uicon',$icon);
+			$stmt = $DB_con->prepare('UPDATE locations SET description=:p1, lat=:p2, lng=:p3, type=:p4, url=:p5 WHERE id=:uid');					
+			$stmt->bindParam(':p1',$des);
+			$stmt->bindParam(':p2',$Latitude);
+			$stmt->bindParam(':p3',$Longitude);
+			$stmt->bindParam(':p4',$type);
+			$stmt->bindParam(':p5',$url);
 			$stmt->bindParam(':uid',$id);
+
+			// $stmt->bindParam(':uicon',$icon);
 								
 			if($stmt->execute())
 			{
@@ -147,13 +147,15 @@ error_reporting( ~E_NOTICE );
 </head>
 
 <body>
+
+<form action="" method="POST">
 <div class="panel">
 	<div class="panel-header"><font color="#767676">Location Area</font><b> EDIT</b></div>
            
-        <div class="panel-mainhalfL">   
-            <div class="cell"><font color="#767676">Province</font>
+        <div class="panel-main">   
+            <div class="cell"><font color="#767676">Description</font>
             <div class="input-control text full-size">
-            <input type="text" name="locateprovince" value="<? echo $locate_province; ?>">
+            <input type="text" name="locatedes" value="<? echo $description; ?>">
             </div>
             </div> 
         </div>
@@ -166,34 +168,43 @@ error_reporting( ~E_NOTICE );
             </div> 
         </div> -->
      
-     <div class="panel-main">            
+     <!-- <div class="panel-main">            
         <div class="cell"><font color="#767676">Description</font>
         <div class="input-control textarea full-size">
-        <input type="text" name="locatedes" value="<? echo $locate_des; ?>">
+        <input type="text" name="locatedes" value="<? echo $description; ?>">
         </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="panel-mainhalfL">
    		<div class="cell"><font color="#767676">Latitude Add</font>
    		<div class="input-control text full-size">
-  		<input type="text" class="float" name="locateLatitude" value="<? echo $locate_Latitude; ?>">
+  		<input type="text" class="float" name="locateLatitude" value="<? echo $lat; ?>">
    		</div>
     	</div>  
    	</div>
   	
-    <div class="panel-mainhalfR">
+    <div class="panel-mainhalfL">
    		<div class="cell"><font color="#767676">Longtitude Add</font>
    		<div class="input-control text full-size">
-  		<input type="text" class="float" name="locateLongitude" value="<? echo $locate_Longitude; ?>">
+  		<input type="text" class="float" name="locateLongitude" value="<? echo $lng; ?>">
    		</div>
     	</div>  
     </div>
     
     <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">Location Zoom</font>
+   		<div class="cell"><font color="#767676">Location Type</font>
    		<div class="input-control text full-size">
-  		<input type="number" name="locatezoom" value="<? echo $locate_zoom; ?>">
+			   <select name="locatetype" id="mheeselect">
+					<option value="<? echo $type; ?>"> <? echo"$type" ?></option>
+					<option value="ธนาคาร"> <? echo"ธนาคาร" ?></option>
+					<option value="โรงอาหาร"> <? echo"โรงอาหาร" ?></option>
+					<option value="ตู้ ATM"> <? echo"ตู้ ATM" ?></option>
+					<option value="ป้ายรถม่วง"> <? echo"ป้ายรถม่วง" ?></option>
+					<option value="ร้านกาแฟ"> <? echo"ร้านกาแฟ" ?></option>
+
+			   
+			   </select>
    		</div>
     	</div>  
    	</div>
@@ -201,12 +212,12 @@ error_reporting( ~E_NOTICE );
     <div class="panel-mainhalfL">
    		<div class="cell"><font color="#767676">URL</font>
    		<div class="input-control text full-size">
-  		<input type="text" name="locateurl" value="<? echo $locate_url; ?>">
+  		<input type="text" name="locateurl" value="<? echo $url; ?>">
    		</div>
     	</div>  
    	</div>
 
-    <div class="panel-mainhalfL">           
+    <!-- <div class="panel-mainhalfL">           
        	<div class="cell">
        	<label><font color="#767676">PIN ICON</font> <font color="#8E4748">***Square scale only. Ex. 24 x 24px & Don't spacing for file name upload.</font></label>
     	<div class="input-control file full-size" data-role="input">
@@ -214,7 +225,7 @@ error_reporting( ~E_NOTICE );
      	<button class="button"><span class="mif-folder"></span></button>
        	</div>
      	</div>  
-    </div>
+    </div> -->
     <div class="panel-bottom">
          	<input type="submit" name="btn_save_updates" value="SAVE" class="btn" />
            	<input type="button" value="CLOSE" onclick="window_close();" title="close" class="btn">

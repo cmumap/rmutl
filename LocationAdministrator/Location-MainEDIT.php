@@ -1,3 +1,5 @@
+<link rel="icon" href="..\img\icon.png">
+
 <?php include "phpscript/security.php";?>
 <?php include_once "connections/dbconnect.php";?>
 <?php include_once "connections/dbconfig.php";?>
@@ -23,44 +25,88 @@
 	}	
 ?>
 <?php
-	error_reporting( ~E_NOTICE );	
-	if(isset($_POST['btnsave']))
+error_reporting( ~E_NOTICE );
+	if(isset($_GET['edit_id']) && !empty($_GET['edit_id']))
 	{
-	
-		$des = $_POST['locatedes'];
-		$Latitude = $_POST['locateLatitude'];
-		$Longitude = $_POST['locateLongitude'];
-		$type = $_POST['locatetype'];
-		$url = $_POST['locateurl'];
+		$id = $_GET['edit_id'];
+		$stmt_edit = $DB_con->prepare('SELECT * FROM highadmin WHERE user_id =:uid');
+		$stmt_edit->execute(array(':uid'=>$id));
+		$edit_row = $stmt_edit->fetch(PDO::FETCH_ASSOC);
+		extract($edit_row);
+	}
+	else
+	{
+	?>
+	<script>
+		function window_close()
+		{ 
+			window.close()
+			window.opener.location.reload();
+		}
+	</script>
+    <?
+	}	
+	if(isset($_POST['btn_save_updates']))
+	{
+		// $province = $_POST['locateprovince'];
+		$des = $_POST['Mainname'];
+		$Latitude = $_POST['Mainemail'];
+		$Longitude = $_POST['Mainloginstatus'];
+		
 		
 		// $imgFile = $_FILES['locateicon']['name'];
 		// $tmp_dir = $_FILES['locateicon']['tmp_name'];
 		// $imgSize = $_FILES['locateicon']['size'];
 				
+		// if($imgFile)
+		// {
+		// 			$upload_dir = '../icon/';
+		// 			$imgExt = strtolower(pathinfo($imgFile,PATHINFO_EXTENSION)); 
+		// 			$valid_extensions = array('jpeg', 'jpg','png'); 				
+		// 			date_default_timezone_set('Asia/Bangkok');
+		// 			$icon = "AraeLocate-".date('Ymd-His').".".$imgExt;
+					
+		// 			if(in_array($imgExt, $valid_extensions))
+		// 			{			
+		// 				if($locate_icon == null) { move_uploaded_file($tmp_dir,$upload_dir.$icon); }
+		// 				else if($locate_icon != null)
+		// 				{
+		// 					unlink($upload_dir.$edit_row['locate_icon']);
+		// 					move_uploaded_file($tmp_dir,$upload_dir.$icon);
+		// 				}
+		// 			}
+		// 			else { $errMSG = "Sorry, only JPG & JPEG files are allowed.";	}	
+		// 		}
+		// 		else { $icon = $edit_row['locate_icon']; }	
 		
-		// if no error occured, continue ....
 		if(!isset($errMSG))
 		{
-			$stmt = $DB_con->prepare('INSERT INTO locations (lat, lng, description, type, url) VALUES(:p1, :p2, :p3, :p4, :p5)');
-			$stmt->bindParam(':p1',$Latitude);
-			$stmt->bindParam(':p2',$Longitude);
-			$stmt->bindParam(':p3',$des);
-			$stmt->bindParam(':p4',$type);
-			$stmt->bindParam(':p5',$url);
-			
+			$stmt = $DB_con->prepare('UPDATE highadmin SET name=:p1, email=:p2, LoginStatus=:p3 WHERE user_id=:uid');					
+			$stmt->bindParam(':p1',$des);
+			$stmt->bindParam(':p2',$Latitude);
+			$stmt->bindParam(':p3',$Longitude);
+			$stmt->bindParam(':uid',$id);
+
+			// $stmt->bindParam(':uicon',$icon);
+								
 			if($stmt->execute())
 			{
-				$successMSG = "new record succesfully inserted ...";
-				header("refresh:3;Location-AreaADD.php");
+			?>
+				<script>
+                alert('Successfully Updated ...');
+                window.close()
+                window.opener.location.reload();
+                </script>
+            <?php
 			}
 			else
 			{
-				$errMSG = "error while inserting....";
-			}
-		}
+				$errMSG = "Sorry Data Could Not Updated !";
+			}		
+		}						
 	}
+	
 ?>
-
 <!doctype html>
 <html>
 <head>
@@ -94,19 +140,19 @@
 			{ $(this).val($(this).val().replace(digit,"")); }
 		} 
 		});
-
-</script>
+	</script>
 </head>
 
 <body>
+
 <form action="" method="POST">
 <div class="panel">
-	<div class="panel-header"><font color="#767676">Location Area</font><b> EDIT</b></div>
+	<div class="panel-header"><font color="#767676">Location Main</font><b> EDIT</b></div>
            
-        <div class="panel-main">   
-            <div class="cell"><font color="#767676">Description</font>
+        <div class="panel-mainhalfL">   
+            <div class="cell"><font color="#767676">Name</font>
             <div class="input-control text full-size">
-            <input type="text" name="locatedes">
+            <input type="text" name="Mainname" value="<? echo $name; ?>">
             </div>
             </div> 
         </div>
@@ -117,55 +163,33 @@
             <input type="text" name="locatetitle" value="<? echo $locate_title; ?>">
             </div>
             </div> 
-        </div> -->
+        </div>
      
-     <!-- <div class="panel-main">            
-        <div class="cell"><font color="#767676">Description</font>
+     <div class="panel-main">            
+        <div class="cell"><font color="#767676">Name</font>
         <div class="input-control textarea full-size">
-        <input type="text" name="locatedes" value="<? echo $description; ?>">
+        <input type="text" name="Mainname" value="<? echo $name; ?>">
         </div>
         </div>
     </div> -->
 
     <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">Latitude Add</font>
+   		<div class="cell"><font color="#767676">Email</font>
    		<div class="input-control text full-size">
-  		<input type="text" class="float" name="locateLatitude">
+  		<input type="email" class="float" name="Mainemail" value="<? echo $email; ?>">
    		</div>
     	</div>  
    	</div>
   	
-    <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">Longtitude Add</font>
+    <div class="panel-mainhalfR">
+   		<div class="cell"><font color="#767676">Status</font>
    		<div class="input-control text full-size">
-  		<input type="text" class="float" name="locateLongitude">
+  		<input type="text" class="float" name="Mainloginstatus" value="<? echo $LoginStatus; ?>" readonly>
    		</div>
     	</div>  
     </div>
     
-    <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">Location Type</font>
-   		<div class="input-control text full-size">
-			   <select name="locatetype" id="mheeselect">
-					<option value="ธนาคาร"> ธนาคาร </option>
-					<option value="โรงอาหาร">โรงอาหาร</option>
-					<option value="ตู้ ATM">ตู้ ATM</option>
-					<option value="ป้ายรถม่วง">ป้ายรถม่วง</option>
-					<option value="ร้านกาแฟ">ร้านกาแฟ</option>
-
-			   
-			   </select>
-   		</div>
-    	</div>  
-   	</div>
-    
-    <div class="panel-mainhalfL">
-   		<div class="cell"><font color="#767676">URL</font>
-   		<div class="input-control text full-size">
-  		<input type="text" name="locateurl" value="<? echo $url; ?>">
-   		</div>
-    	</div>  
-   	</div>
+   
 
     <!-- <div class="panel-mainhalfL">           
        	<div class="cell">
@@ -176,9 +200,8 @@
        	</div>
      	</div>  
     </div> -->
-
     <div class="panel-bottom">
-         	<input type="submit" name="btnsave" value="SAVE" class="btn" />
+         	<input type="submit" name="btn_save_updates" value="SAVE" class="btn" />
            	<input type="button" value="CLOSE" onclick="window_close();" title="close" class="btn">
             <script>
 				function window_close()
